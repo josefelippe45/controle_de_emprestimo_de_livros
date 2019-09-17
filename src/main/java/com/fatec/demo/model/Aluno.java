@@ -17,7 +17,7 @@ public class Aluno {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@NaturalId
-	@Column(nullable = false, length = 4)
+	@Column(nullable = false, length = 100)
 	@NotEmpty(message = "O nome deve ser preenchido") // o atributo nao pode ser nulo e o tamanho > zero
 	private String nome;
 	@Column(nullable = false, length = 100)

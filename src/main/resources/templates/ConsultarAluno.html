@@ -1,0 +1,28 @@
+<tr>
+	<th>ID</th>
+	<th>Nome</th>
+	<th>RA</th>
+	<th>Curso</th>
+</tr>
+</thead>
+<tbody>
+	<tr th:each="aluno : ${aluno}">
+		<td th:text="${aluno.id}"></td>
+		<td th:text="${aluno.nome}"></td>
+		<td th:text="${aluno.ra}"></td>
+		<td th:text="${aluno.curso}"></td>
+		<td>
+			<div class="btn-group pull-right">
+				<a class="btn btn-sm btn-primary"
+					th:href="@{/aluno/edit/{nome}(nome=${aluno.nome})}">Editar</a> <a
+					class="delete btn btn-sm btn-danger"
+					th:href="@{/aluno/delete/{id}(id=${aluno.id})}">Excluir</a>
+			</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
