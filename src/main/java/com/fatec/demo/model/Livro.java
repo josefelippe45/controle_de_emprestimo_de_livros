@@ -1,4 +1,4 @@
-package model;
+package com.fatec.demo.model;
 
 import javax.persistence.*;
 

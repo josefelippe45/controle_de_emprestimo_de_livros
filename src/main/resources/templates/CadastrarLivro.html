@@ -20,7 +20,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<header th:replace="fragments/header :: cabecalho">
+	<header th:replace="fragments/headers :: cabecalho">
 		<div>header</div>
 	</header>
 	<div class="container my-5">
@@ -29,7 +29,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-8">
-					<form action="#" th:action="@{/api/save}" th:object="${livro}"
+					<form action="#" th:action="@{/livros/save}" th:object="${livro}"
 						method="post">
 						<div class="row">
 							<div class="form-group col-md-4">
