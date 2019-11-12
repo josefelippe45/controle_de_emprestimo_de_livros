@@ -38,12 +38,12 @@ public class AlunoController {
 		ModelAndView mv = new ModelAndView("CadastrarAluno");
 		mv.addObject("alunos", aluno);
 		return mv;
-	}
+	} 
 
 	@GetMapping("/edit/{nome}") // diz ao metodo que ira responder a uma requisicao do tipo get
-	public ModelAndView mostraFormAdd(@PathVariable("ra") String ra) {
+	public ModelAndView mostraFormAdd(@PathVariable("nome") String nome) {
 		ModelAndView modelAndView = new ModelAndView("AtualizaAluno");
-		modelAndView.addObject("aluno", repository.findByRa(ra)); // o repositorio e injetado no controller
+		modelAndView.addObject("aluno", repository.findByRa(nome)); // o repositorio e injetado no controller
 		return modelAndView; // addObject adiciona objetos para view
 	}
 
@@ -59,7 +59,7 @@ public class AlunoController {
 	public ModelAndView save(@Valid Aluno aluno, BindingResult result) {
 		ModelAndView mv = new ModelAndView("CadastrarAluno");
 		if (result.hasErrors()) {
-			mv.addObject("fail", "Dados invÃ¡lidos"); // quando fail nao eh nulo a msg aparece na tela
+			mv.addObject("fail", "Dados inválidos"); // quando fail nao eh nulo a msg aparece na tela
 			return mv;
 		}
 		try {
@@ -70,7 +70,7 @@ public class AlunoController {
 				mv.addObject("success", "Aluno cadastrado com sucesso"); // success nao eh nulo
 				return mv;
 			} else {
-				mv.addObject("fail", "Aluno jÃ¡ cadastrado."); // fail nao eh nulo a msg aparece na tela
+				mv.addObject("fail", "Aluno já cadastrado."); // fail nao eh nulo a msg aparece na tela
 				return mv;
 			}
 		} catch (Exception e) {

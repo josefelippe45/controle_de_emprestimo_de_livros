@@ -11,6 +11,7 @@ public class Aluno {
 	@NaturalId
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	
 	private Long id;
 	@Column(nullable = false, length = 10)
 	@NotEmpty(message = "O nome deve ser preenchido")

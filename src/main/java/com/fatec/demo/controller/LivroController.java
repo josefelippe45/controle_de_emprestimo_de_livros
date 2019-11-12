@@ -52,14 +52,14 @@ public class LivroController {
 		repository.deleteById(id);
 		ModelAndView modelAndView = new ModelAndView("consultarLivro");
 		modelAndView.addObject("livros", repository.findAll());
-		return modelAndView;
+		return modelAndView; 
 	}
 
 	@PostMapping("/save")
 	public ModelAndView save(@Valid Livro livro, BindingResult result) {
 		ModelAndView mv = new ModelAndView("CadastrarLivro");
 		if (result.hasErrors()) {
-			mv.addObject("fail", "Dados invÃ¡lidos"); // quando fail nao eh nulo a msg aparece na tela
+			mv.addObject("fail", "Dados inválidos"); // quando fail nao eh nulo a msg aparece na tela
 			return mv;
 		}
 		try {
