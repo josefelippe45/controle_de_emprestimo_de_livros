@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fatec.demo.model.*;
+import com.fatec.demo.model.Livro;
+import com.fatec.demo.model.LivroRepository;
 
 @RestController
 @RequestMapping(path = "/livros")
@@ -56,24 +57,25 @@ public class LivroController {
 
 	@PostMapping("/save")
 	public ModelAndView save(@Valid Livro livro, BindingResult result) {
-		ModelAndView modelAndView = new ModelAndView("consultarLivro");
+		ModelAndView mv = new ModelAndView("CadastrarLivro");
 		if (result.hasErrors()) {
-			return new ModelAndView("cadastrarLivro");
+			mv.addObject("fail", "Dados invÃ¡lidos"); // quando fail nao eh nulo a msg aparece na tela
+			return mv;
 		}
 		try {
 			Livro jaExiste = null;
 			jaExiste = repository.findByIsbn(livro.getIsbn());
 			if (jaExiste == null) {
 				repository.save(livro);
-				modelAndView = new ModelAndView("consultarLivro");
-				modelAndView.addObject("livros", repository.findAll());
-				return modelAndView;
+				mv.addObject("success", "Livro cadastrado com sucesso"); // success nao eh nulo
+				return mv;
 			} else {
-				return new ModelAndView("cadastrarLivro");
+				mv.addObject("fail", "Livro jÃ¡ cadastrado."); // fail nao eh nulo a msg aparece na tela
+				return mv;
 			}
 		} catch (Exception e) {
-			System.out.println("erro ===> " + e.getMessage());
-			return modelAndView; // captura o erro mas nao informa o motivo.
+			mv.addObject("fail", "erro ===> " + e.getMessage());
+			return mv;
 		}
 	}
 

@@ -1,39 +1,29 @@
 package com.fatec.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+
+import javax.validation.constraints.*;
 
 import org.hibernate.annotations.NaturalId;
 
 @Entity(name = "Aluno")
 public class Aluno {
-
+	@NaturalId
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@NaturalId
-	@Column(nullable = false, length = 100)
-	@NotEmpty(message = "O nome deve ser preenchido") // o atributo nao pode ser nulo e o tamanho > zero
+	@Column(nullable = false, length = 10)
+	@NotEmpty(message = "O nome deve ser preenchido")
 	private String nome;
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, length = 13)
 	@NotEmpty(message = "O RA deve ser preenchido")
 	private String ra;
 	@Column(nullable = false)
 	@NotNull(message = "Curso invalido")
+	@Size(min = 1, max = 50, message = "Curso deve ter entre 1 e 50 caracteres")
 	private String curso;
 
 	public Aluno() {
-	}
-
-	public Aluno(String i, String t, String a) {
-		this.nome = i;
-		this.ra = t;
-		this.curso = a;
 	}
 
 	public Long getId() {
@@ -42,6 +32,12 @@ public class Aluno {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Aluno(String i, String t, String a) {
+		this.nome = i;
+		this.ra = t;
+		this.curso = a;
 	}
 
 	public String getNome() {

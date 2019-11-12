@@ -1,0 +1,28 @@
+<tr>
+	<th>ID</th>
+	<th>ISBN</th>
+	<th>Titulo</th>
+	<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+	<tr th:each="livro : ${livros}">
+		<td th:text="${livro.id}"></td>
+		<td th:text="${livro.isbn}"></td>
+		<td th:text="${livro.titulo}"></td>
+		<td th:text="${livro.autor}"></td>
+		<td>
+			<div class="btn-group pull-right">
+				<a class="btn btn-sm btn-primary"
+					th:href="@{/livros/edit/{isbn}(isbn=${livro.isbn})}">Editar</a> <a
+					class="delete btn btn-sm btn-danger"
+					th:href="@{/livros/delete/{id}(id=${livro.id})}">Excluir</a>
+			</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
