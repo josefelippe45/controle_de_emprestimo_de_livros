@@ -70,7 +70,7 @@ public class LivroController {
 				mv.addObject("success", "Livro cadastrado com sucesso"); // success nao eh nulo
 				return mv;
 			} else {
-				mv.addObject("fail", "Livro jÃ¡ cadastrado."); // fail nao eh nulo a msg aparece na tela
+				mv.addObject("fail", "Livro já cadastrado."); // fail nao eh nulo a msg aparece na tela
 				return mv;
 			}
 		} catch (Exception e) {
